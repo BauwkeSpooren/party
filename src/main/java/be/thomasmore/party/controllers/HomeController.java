@@ -44,4 +44,9 @@ public class HomeController {
         model.addAttribute("venueName",venueName);
         return "venuedetails";
     }
+
+    @GetMapping("/venuelist")
+    public String venuelist(Model model) {
+        return "venuelist";
+    }
 }

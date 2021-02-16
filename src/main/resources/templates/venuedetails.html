@@ -7,6 +7,16 @@
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/stylesheet.css}" href="/static.css/stylesheet.css"/>
 </head>
 <body>
+<header>
+    <div class="nav">
+        <h1>Let's Party!</h1>
+        <div class="navbuttons">
+            <a class="buttonLook menuButton" href="/home">home</a>
+            <a class="buttonLook menuButton" href="/venuelist">venues</a>
+            <a class="buttonLook menuButton" href="/about">about</a>
+        </div>
+    </div>
+</header>
 <div class="row1">
     <div class="row1content">
         <h2><p th:text="${venueName}">venue</p></h2>
