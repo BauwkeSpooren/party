@@ -1,21 +1,331 @@
+/*
+    https://coolors.co/d0cfec-6a8e7f-989572-c6ae82-edc7cf
+SOAP: #D0CFEC;
+AUTOMETALSAURUS: #6A8E7F
+ARTICHOKE: #989572
+LIGHT FRENCH BEIGE: #C6AE82
+CAMEO PINK: #EDC7CF
+ */
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
 
-html {
-    font-family: Courier, monospace, Helvetica, sans-serif;
-    background-color: lightskyblue;
-    margin-left: 200px;
-    margin-right: 200px;
-    font-size: 20px;
+/* general styles for html elements */
+
+body {
+    background-color: #D0CFEC;
+    color: #4c6c5d;
+    font-family: Bahnschrift, sans-serif;
+    margin: 0;
 }
-p {
-    font-size: 30px;
-}
+
+
 h1 {
-    font-size: 32px;
-    line-height: 26px;
-    color: mediumpurple;
-    font-weight: 600;
-    font-family: arvo, monospace;
+    margin: 20px 0;
+    text-align: center;
+    font-size: 4em;
 }
-p.a {
+
+h2 {
+    margin: 10px 0;
+    font-size: 2em;
+}
+
+p {
+    padding: 10px 50px;
+}
+
+hr {
+    border-color: #EDC7CF;
+    width: 70%;
+    margin: 5px auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* general layout shared by all pages */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: #6A8E7F;
+    color: #EDC7CF;
+    height: 150px;
+}
+
+.freespaceforheader {
+    margin: 150px 0 20px 0;
+}
+
+/*navigation buttons in header*/
+.navbuttons {
+    display: flex;
+}
+
+.bottom {
+    background-color: #6A8E7F;
+    color: #EDC7CF;
+    height: 30px;
+    font-size: 0.7em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.bottom p {
+    text-align: center;
+}
+
+.row1 {
+    display: flex;
+    position: relative;
+    margin: 20px 0;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    background-color: #f2cf9ed4;
+    padding: 30px;
+    margin: 0 30px;
+}
+
+.row1 img {
+    width: 100%;
+    height: auto;
+}
+
+.hello {
+    position: absolute;
+    right: 0;
+    top: 90px;
+    margin: 0 10px;
+}
+
+.row1content {
+    flex-grow: 4;
+    margin: 0 50px;
+}
+
+.cols2 {
+    position: relative;
+}
+
+.filters {
+    margin: 15px 50px 0 0;
+    float: left;
+    width: 35%;
+}
+
+.onefilter {
+    display: flex;
+    margin: 2px 0;
+}
+
+.onefilter input {
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+
+.onefilter input[type="text" i] {
+    width: 15em;
+}
+
+.onefilter input[type="number" i] {
+    width: 5em;
+}
+
+.filtername {
+    width: 4em;
+    text-align: right;
+}
+
+/* links that look like buttons */
+
+/* links that do or don't look like buttons */
+.buttonLook {
+    background-color: #EDC7CF;
+    color: #6A8E7F;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 1px 1px 1px darkgrey;
+}
+
+.buttonLook:hover {
+    background-color: #6A8E7F;
+    color: #EDC7CF;
+}
+
+.buttonLook:active {
+    background-color: #6A8E7F;
+    color: #EDC7CF;
+}
+
+a.mediumButton {
+    display: block;
+    margin: 10px auto;
+    width: 400px;
+    font-size: 1.2em;
+    padding: 1em;
+}
+
+a.smallButton {
+    display: block;
+    font-size: 1em;
+    padding: 0.5em;
+}
+
+a.menuButton {
+    display: block;
+    margin: 0 10px;
+    width: 6em;
+    padding: 0.2em;
+}
+
+.authButton {
+    float: right;
+    margin-left: auto;
+}
+
+.filterButton {
+    margin: 20px 0;
+    padding: .5em;
+    border: none;
+    font-size: medium;
+}
+
+a.activeFilter {
+    background-color: #f3a4b4;
+    color: #2b3e35;
+}
+
+.editButton {
+    font-size: 1.2em;
+    margin: 0 0.6em 0 0;
+    padding: 1.2em;
+    background-color: #C6AE82;
+    color: #4c6c5d;
+    border-width: 0;
+    width: 5em;
+    display: inline-block;
+}
+
+.going {
+    float: right;
+    width: 10em;
+}
+
+.going input {
+    border: none;
+    float: right;
+    font-size: 1.2em;
+    margin: 0 10px 0 0;
+}
+
+.going div {
+    font-size: 1.2em;
+    padding: 0.2em 0.2em;
+    float: right;
+    background-color: #C6AE82;
+    color: #4c6c5d;
+    width: 10em;
+    margin: 10px 10px 0 0;
+    text-align: right;
+}
+
+
+a.linkLook {
+    background-color: transparent;
+    color: #6A8E7F;
+}
+
+a.linkLook:hover {
+    background-color: transparent;
+    color: #989572;
+}
+
+/* list page only */
+.venuelist {
+    float: left;
+}
+
+/* details page only */
+.venueinfo {
+    margin: 30px 0;
+}
+
+.venueExtraInfo {
+    font-size: small;
+}
+
+.infoLine {
+    margin: 15px 0;
+    font-size: 1em;
+    display: flex;
+}
+
+.infoLineName {
+    width: 13em;
+}
+
+.infoLineValue {
+    font-size: 1.2em;
+    text-align: left;
+}
+
+
+input.infoLineValue, select.infoLineValue, textarea.infoLineValue {
+    background-color: #eeedfd;
+    color: #4c6c5d;
+    border-width: 1px;
+    margin: -2px;
+}
+
+.prevButtonDiv {
+    position: fixed;
+    left: 10px;
+    top: 160px;
+}
+
+.nextButtonDiv {
+    position: fixed;
+    right: 10px;
+    top: 160px;
+}
+
+.editButtonDiv {
+    position: absolute;
+    right: 60px;
+}
+
+/* home page only */
+
+.row2 {
+    background-color: #989572;
+    color: #EDC7CF;
+    height: 400px;
+    padding: 60px 0;
+}
+
+.row3 {
+    background-color: #C6AE82;
+    height: 300px;
+    padding: 60px 0;
+    text-align: center;
+}
+
+
+.error {
+    color: red;
+    font-size: larger;
+}
+
+.fieldError, input.fieldError {
     background-color: red;
 }
