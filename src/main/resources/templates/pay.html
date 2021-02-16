@@ -3,15 +3,11 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Pay up</title>
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/stylesheet.css}" href="/static.css/stylesheet.css"/>
 </head>
 <body>
-    <h1>Hello</h1>
-    <h1 th:text="${appName}+' --- '+ ${appName}">appname</h1>
-    <h1 th:text="|hello hello ${appName}|">app</h1>
-    <h1 th:text="${55+77}">app</h1>
-    <p th:text="${mySpecialNumber}">mySpecialNumber</p>
-    <a th:href="@{/about}">go to about</a>
+    <p class="a" th:text="|De datum van vandaag is ${date}|">date</p>
+    <p class="a" th:text="|De uiterste datum van betalen is ${paydate}|">paydate</p>
 </body>
 </html>
