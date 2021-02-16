@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>About</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/stylesheet.css}" href="/Static.css/stylesheet.css" />
 </head>
 <body>
-<h1>Dit is een about pagina</h1>
+    <h1>Dit is een about pagina</h1>
+    <p th:text="${mySpecialNumber}">mySpecialNumber</p>
+    <a th:href="@{/home}">go to home</a>
 </body>
 </html>

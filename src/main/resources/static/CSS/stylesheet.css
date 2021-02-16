@@ -1,0 +1,18 @@
+
+html {
+    font-family: Courier, monospace, Helvetica, sans-serif;
+    background-color: lightskyblue;
+    margin-left: 200px;
+    margin-right: 200px;
+    font-size: 20px;
+}
+p {
+    font-size: 30px;
+}
+h1 {
+    font-size: 32px;
+    line-height: 26px;
+    color: mediumpurple;
+    font-weight: 600;
+    font-family: arvo, monospace;
+}
