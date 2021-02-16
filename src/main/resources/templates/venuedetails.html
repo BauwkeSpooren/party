@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Venue Details</title>
-    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/stylesheet.css}" href="/static.css/stylesheet.css"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/stylesheet.css}"/>
 </head>
 <body>
 <header>
@@ -19,10 +19,8 @@
 </header>
 <div class="row1">
     <div class="row1content">
-        <h2><p th:text="${venueName}">venue</p></h2>
+        <h2 th:text="${venueName}">venue/></h2>
     </div>
-    <div class="buttons"><a href="/">home</a></div>
 </div>
-
 </body>
 </html>
