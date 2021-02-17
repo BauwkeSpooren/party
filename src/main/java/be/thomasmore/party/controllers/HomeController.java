@@ -39,9 +39,9 @@ public class HomeController {
         return "pay";
     }
 
-    @GetMapping("/venuedetails/{venueName}")
-    public String venuedetails(Model model, @PathVariable String venueName) {
-        model.addAttribute("venueName",venueName);
+    @GetMapping({"/venuedetails","/venuedetails/{venueName}"})
+    public String venuedetails(Model model, @PathVariable (required = false) String venueName) {
+        model.addAttribute("venueName",(venueName!=null) ? venueName : "-- no venue chosen --");
         return "venuedetails";
     }
 
