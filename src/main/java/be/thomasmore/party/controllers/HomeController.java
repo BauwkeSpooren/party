@@ -37,12 +37,13 @@ public class HomeController {
     public String pay(Model model) {
         model.addAttribute("date",date);
         model.addAttribute("paydate",paydate);
+        model.addAttribute("localDateTime", LocalDateTime.now());
         return "pay";
     }
 
     @GetMapping({"/venuedetails","/venuedetails/{venueName}"})
     public String venuedetails(Model model, @PathVariable (required = false) String venueName) {
-        model.addAttribute("venueName",(venueName!=null) ? venueName : "-- no venue chosen --");
+        model.addAttribute("venueName",venueName);
         return "venuedetails";
     }
 

@@ -8,7 +8,32 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header">Header</div>
-    <p class="a" th:text="|De datum van vandaag is ${date}|">date</p>
-    <p class="a" th:text="|De uiterste datum van betalen is ${paydate}|">paydate</p>
+<p class="a" th:text="|De datum van vandaag is ${#temporals.format(localDateTime, 'dd-MM-yyyy')}|">date</p>
+<p class="a" th:text="|De uiterste datum van betalen is ${paydate}|">paydate</p>
+<p class="a" th:text="|Vandaag is het ${#temporals.dayOfWeekName(localDateTime)} van de week|">paydate</p>
+
+<!--<h2 th:if="${#temporals.dayOfWeekNameShort(localDateTime)}" th:text="Sat">venuedetails</h2>
+<p th:unless="${venueName}">-- no venue chosen --</p>-->
+
+<div th:switch="${#temporals.dayOfWeekName(localDateTime)}">
+    <p th:case="saturday">Prettig weekend, je hebt het verdiend!</p>
+    <p th:case="sunday">Prettig weekend, je hebt het verdiend!</p>
+    <p th:case="*">Voor je het weet is het weekend!</p>
+</div>
+
+<!--
+<div th:switch="saturday">
+    <p th:case="'saturday'">Prettig weekend, je hebt het verdiend!</p>
+    <p th:case="'sunday'">Prettig weekend, je hebt het verdiend!</p>
+    <p th:case="*">Voor je het weet is het weekend!</p>
+</div>
+
+<div th:switch="sunday">
+    <p th:case="'saturday'">Prettig weekend, je hebt het verdiend!</p>
+    <p th:case="'sunday'">Prettig weekend, je hebt het verdiend!</p>
+    <p th:case="*">Voor je het weet is het weekend!</p>
+</div>
+-->
+
 </body>
 </html>
