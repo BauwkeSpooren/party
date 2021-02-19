@@ -9,9 +9,10 @@
 <body>
 <div th:replace="fragments/header :: header">Header</div>
 <h2>venues</h2>
-<a class="buttonLook mediumButton" th:href="@{/venuedetails/de loods}">De loods</a>
-<a class="buttonLook mediumButton" th:href="@{/venuedetails/de carré}">De Carré</a>
-<a class="buttonLook mediumButton" th:href="@{/venuedetails/Sportpaleis}">Sportpaleis</a>
-
+<div th:each="venueName : ${venueNames}">
+    <a class="buttonLook mediumButton"
+       th:href="@{|/venuedetails/${venueName}|}"
+       th:text="${venueName}">venue name</a>
+</div>
 </body>
 </html>

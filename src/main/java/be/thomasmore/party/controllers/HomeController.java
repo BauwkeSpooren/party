@@ -18,6 +18,7 @@ public class HomeController {
     private final String appName = "WOOOO";
     private final String date = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     private final String paydate = LocalDate.now().plusDays(30).format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+    private final String[] venueNames = {"De Loods", "De Club", "De Hanger", "Zapoi", "Kuub", "Cuba Libre"};
 
     @GetMapping({"/","/home"})
     public String home(Model model) {
@@ -47,6 +48,7 @@ public class HomeController {
 
     @GetMapping("/venuelist")
     public String venuelist(Model model) {
+        model.addAttribute("venueNames", venueNames);
         return "venuelist";
     }
 }
