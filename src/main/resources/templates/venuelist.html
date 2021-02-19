@@ -9,10 +9,10 @@
 <body>
 <div th:replace="fragments/header :: header">Header</div>
 <h2>venues</h2>
-<div th:each="venueName, iter : ${venueNames}">
+<div th:each="venueName : ${venueNames}">
     <a class="buttonLook mediumButton"
        th:href="@{|/venuedetails/${venueName}|}"
-       th:text="${venueName}">venue name</a>
+       th:text="|${venueName}', met index : '${venueNameStat.index}' met in totaal '${venueNameStat.size} ' elementen'|">venue name</a>
 </div>
 </body>
 </html>
