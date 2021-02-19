@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -44,6 +45,12 @@ public class HomeController {
     @GetMapping({"/venuedetails","/venuedetails/{venueName}"})
     public String venuedetails(Model model, @PathVariable (required = false) String venueName) {
         model.addAttribute("venueName",venueName);
+        return "venuedetails";
+    }
+
+    @GetMapping("venuedetailsbyindex/{index}")
+    public String venuelistbyindex(Model model, @PathVariable Integer index) {
+        model.addAttribute("venueName", index >= 1 && index < venueNames.length+1 ? venueNames[index - 1] : "Geef een nummer op dat bestaat: tussen 1 en 6");
         return "venuedetails";
     }
 

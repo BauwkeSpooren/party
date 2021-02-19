@@ -9,7 +9,7 @@
 <body>
 <div th:replace="fragments/header :: header">Header</div>
 <h2>venues</h2>
-<div th:each="venueName : ${venueNames}">
+<div th:each="venueName, iter : ${venueNames}">
     <a class="buttonLook mediumButton"
        th:href="@{|/venuedetails/${venueName}|}"
        th:text="${venueName}">venue name</a>

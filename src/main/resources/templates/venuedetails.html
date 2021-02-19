@@ -12,6 +12,11 @@
     <div class="row1content">
         <h2 th:if="${venueName}" th:text="${venueName}">venuedetails</h2>
         <p th:unless="${venueName}">-- no venue chosen --</p>
+
+        <!--<div th:switch="${venueName}">
+            <p th:case= "${venueName}">${venueName}</p>
+            <p th:case="*">-- no venue chosen --</p>
+        </div>-->
     </div>
 </div>
 </body>
