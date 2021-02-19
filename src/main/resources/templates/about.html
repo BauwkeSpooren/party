@@ -7,17 +7,7 @@
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/stylesheet.css}"/>
 </head>
 <body>
-<header>
-    <div class="nav">
-        <h1>Let's Party!</h1>
-        <div class="navbuttons">
-            <a class="buttonLook menuButton" href="/home">home</a>
-            <a class="buttonLook menuButton" href="/venuelist">venues</a>
-            <a class="buttonLook menuButton" href="/about">about</a>
-        </div>
-    </div>
-    <div class="freespaceforheader"></div>
-</header>
+<div th:replace="fragments/header :: header">Header</div>
     <h1>Dit is een about pagina</h1>
     <p th:text="${mySpecialNumber}">mySpecialNumber</p>
     <p>blablabla hier staat tekst over about, what is about? it's about about so about about.</p>
