@@ -12,9 +12,6 @@
 <p class="a" th:text="|De uiterste datum van betalen is ${paydate}|">paydate</p>
 <p class="a" th:text="|Vandaag is het ${#temporals.dayOfWeekName(localDateTime)} van de week|">paydate</p>
 
-<!--<h2 th:if="${#temporals.dayOfWeekNameShort(localDateTime)}" th:text="Sat">venuedetails</h2>
-<p th:unless="${venueName}">-- no venue chosen --</p>-->
-
 <div th:switch="${#temporals.dayOfWeekName(localDateTime)}">
     <p th:case="saturday">Prettig weekend, je hebt het verdiend!</p>
     <p th:case="sunday">Prettig weekend, je hebt het verdiend!</p>

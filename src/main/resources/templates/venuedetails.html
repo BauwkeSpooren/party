@@ -10,7 +10,6 @@
 <div th:replace="fragments/header :: header">Header</div>
 <div class="row1">
     <div class="row1content">
-
         <div th:switch="${index}">
             <h2 th:case="null">-- no venue chosen --</h2>
             <h2 th:case="*" th:text="${venueName}"></h2>

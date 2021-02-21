@@ -15,7 +15,6 @@ import java.util.Date;
 
 public class HomeController {
 
-    private final int mySpecialNumber = 729;
     private final String appName = "WOOOO";
     private final String date = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     private final String paydate = LocalDate.now().plusDays(30).format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
@@ -23,14 +22,12 @@ public class HomeController {
 
     @GetMapping({"/","/home"})
     public String home(Model model) {
-        model.addAttribute("mySpecialNumber", mySpecialNumber);
         model.addAttribute("appName", appName);
         return "home";
     }
 
     @GetMapping("/about")
     public String about(Model model) {
-        model.addAttribute("mySpecialNumber", mySpecialNumber);
         return "about";
     }
 
@@ -50,6 +47,7 @@ public class HomeController {
     @GetMapping("/venuedetails/{index}")
     public String venuedetails(Model model, @PathVariable (required = false) Integer index) {
         model.addAttribute("venueName", index >= 0 && index < venueNames.length ? venueNames[index] : "no venue was chosen");
+        model.addAttribute("venueNames", venueNames);
         return "venuedetails";
     }
 
