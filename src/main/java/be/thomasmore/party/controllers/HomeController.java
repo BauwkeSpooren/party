@@ -39,15 +39,14 @@ public class HomeController {
         return "pay";
     }
 
-    @GetMapping("/venuedetails")
-    public String venue(Model model) {
-        return "venuedetails";
-    }
-
-    @GetMapping("/venuedetails/{index}")
-    public String venuedetails(Model model, @PathVariable (required = false) Integer index) {
-        model.addAttribute("venueName", index >= 0 && index < venueNames.length ? venueNames[index] : "no venue was chosen");
-        model.addAttribute("venueNames", venueNames);
+    @GetMapping({"/venuedetails", "/venuedetails/{index}"})
+    public String venueDetails(Model model,
+                               @PathVariable(required = false)  Integer index) {
+        if (index!=null && index>=0 && index<venueNames.length ) {
+            model.addAttribute("venueName", venueNames[index]);
+            model.addAttribute("prevIndex", index>0 ? index-1 : venueNames.length-1);
+            model.addAttribute("nextIndex", index<venueNames.length-1 ? index+1 : 0);
+        }
         return "venuedetails";
     }
 
