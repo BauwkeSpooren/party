@@ -31,7 +31,7 @@ public class HomeController {
         return "about";
     }
 
-    @GetMapping({"/venuedetailsbyid", "/venuedetailsbyid/{id}"})
+    @GetMapping({"/venuedetails", "/venuedetails/{id}"})
     public String venueDetails(Model model,
                                @PathVariable(required = false)  Integer id) {
         model.addAttribute("venueName", venueRepository.findById(id).get());
