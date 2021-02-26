@@ -1,6 +1,8 @@
 package be.thomasmore.party.controllers;
 
+import be.thomasmore.party.model.Artist;
 import be.thomasmore.party.model.Venue;
+import be.thomasmore.party.repositories.ArtistRepository;
 import be.thomasmore.party.repositories.VenueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,9 @@ public class HomeController {
     @Autowired
     private VenueRepository venueRepository;
 
+    @Autowired
+    private ArtistRepository artistRepository;
+
     @GetMapping({"/","/home"})
     public String home(Model model) {
         return "home";
@@ -35,11 +40,22 @@ public class HomeController {
     public String venueDetails(Model model,
                                @PathVariable(required = false)  Integer id) {
         model.addAttribute("venueName", venueRepository.findById(id).get());
-        if (id!=null && id>=0 && id<venueRepository.count() ) {
+        if (id!=null && id>0 && id<venueRepository.count() ) {
             model.addAttribute("prevIndex", id>0 ? id-1 : venueRepository.count()-1);
             model.addAttribute("nextIndex", id<venueRepository.count()-1 ? id+1 : 0);
         }
         return "venuedetails";
+    }
+
+    @GetMapping({"/artistsdetails", "/artistsdetails/{id}"})
+    public String artistsDetails(Model model,
+                               @PathVariable(required = false)  Integer id) {
+        model.addAttribute("artistName", artistRepository.findById(id).get());
+        if (id!=null && id>0 && id<artistRepository.count() ) {
+            model.addAttribute("prevIndex", id>0 ? id-1 : artistRepository.count()-1);
+            model.addAttribute("nextIndex", id<artistRepository.count()-1 ? id+1 : 0);
+        }
+        return "artistsdetails";
     }
 
     @GetMapping("/venuelist")
@@ -47,5 +63,12 @@ public class HomeController {
         Iterable<Venue> venues = venueRepository.findAll();
         model.addAttribute("venues", venues);
         return "venuelist";
+    }
+
+    @GetMapping("/artistlist")
+    public String artistlist(Model model) {
+        Iterable<Artist> artists = artistRepository.findAll();
+        model.addAttribute("artists", artists);
+        return "artistlist";
     }
 }
