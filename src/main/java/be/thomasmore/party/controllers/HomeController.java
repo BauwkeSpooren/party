@@ -21,12 +21,6 @@ public class HomeController {
     @Autowired
     private VenueRepository venueRepository;
 
-    //private final Venue[] venues = {
-       //     new Venue("De Loods","https://www.facebook.com/boesjkammeree/", 5,true, false, false, true,"france",5000),
-     //       new Venue("De Club","https://www.youtube.com/watch?v=4rlc2EgSdbU&list=PL0bHKk6wuUGLWGipKSf0dFrpuzDitERqD", 5,true, true, false, false,"dsfdsfds",555555),
-         //   new Venue("De Hanger","https://www.facebook.com/boesjkammeree/", 5,false, true, false, true,"iolouiouio",2555)
-   // };
-
     @GetMapping({"/","/home"})
     public String home(Model model) {
         return "home";
@@ -41,7 +35,6 @@ public class HomeController {
     public String venueDetails(Model model,
                                @PathVariable(required = false)  Integer id) {
         model.addAttribute("venueName", venueRepository.findById(id).get());
-
         if (id!=null && id>=0 && id<venueRepository.count() ) {
             model.addAttribute("prevIndex", id>0 ? id-1 : venueRepository.count()-1);
             model.addAttribute("nextIndex", id<venueRepository.count()-1 ? id+1 : 0);
