@@ -65,6 +65,19 @@ public class HomeController {
         return "venuelist";
     }
 
+    @GetMapping("/venuelist/outdoor/{filter}")
+    public String venuelistOutdoor(Model model, @PathVariable String filter) {
+        if (filter.equals("yes")) {
+            Iterable<Venue> venues = venueRepository.Outdoor(true);
+            model.addAttribute("venues", venues);
+        }
+        else if (filter.equals("no")) {
+            Iterable<Venue> venues = venueRepository.Outdoor(false);
+            model.addAttribute("venues", venues);
+        }
+        return "venuelist";
+    }
+
     @GetMapping("/artistlist")
     public String artistlist(Model model) {
         Iterable<Artist> artists = artistRepository.findAll();
