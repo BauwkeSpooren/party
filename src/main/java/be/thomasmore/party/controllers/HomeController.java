@@ -58,8 +58,8 @@ public class HomeController {
         return "artistsdetails";
     }
 
-    @GetMapping("/venuelist")
-    public String venuelist(Model model) {
+    @GetMapping({"/venuelist","/venuelist/outdoor","/venuelist/{something}"})
+    public String venuelist(Model model, @PathVariable (required = false) String something) {
         Iterable<Venue> venues = venueRepository.findAll();
         model.addAttribute("venues", venues);
         return "venuelist";
@@ -73,6 +73,10 @@ public class HomeController {
         }
         else if (filter.equals("no")) {
             Iterable<Venue> venues = venueRepository.Outdoor(false);
+            model.addAttribute("venues", venues);
+        }
+        else {
+            Iterable<Venue> venues = venueRepository.findAll();
             model.addAttribute("venues", venues);
         }
         return "venuelist";
