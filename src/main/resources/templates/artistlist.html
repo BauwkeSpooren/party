@@ -13,7 +13,7 @@
     <h2>Artists</h2>
     <div th:each="artist: ${artists}">
     <a class="buttonLook mediumButton"
-       th:href="@{|/artistsdetails/${artistStat.index+1}|}"
+       th:href="@{|/artistdetails/${artistStat.index+1}|}"
        th:text="${artist.artistName}">artist name</a>
 </div>
 </div>
