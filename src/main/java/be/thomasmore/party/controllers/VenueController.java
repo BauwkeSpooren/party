@@ -2,20 +2,22 @@ package be.thomasmore.party.controllers;
 
 import be.thomasmore.party.model.Venue;
 import be.thomasmore.party.repositories.VenueRepository;
-import lombok.extern.flogger.Flogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
-
 public class VenueController {
+    private Logger logger = LoggerFactory.getLogger(VenueController.class);
+
     @Autowired
     private VenueRepository venueRepository;
 
@@ -34,30 +36,45 @@ public class VenueController {
         return "venuedetails";
     }
 
-    @GetMapping("/venuelist")
-    public String venueList(Model model, @RequestParam(required = false) Integer capacityAsking) {
-        Iterable<Venue> venues;
-        if (capacityAsking == null) {
-            venues = venueRepository.findAll();
-        }
-        else {
-            venues = venueRepository.findByCapacityGreaterThan(capacityAsking);
-        }
+    @GetMapping({"/venuelist"})
+    public String venueList(Model model) {
+        logger.info("venueList");
+        Iterable<Venue> venues = venueRepository.findAll();
+        long nrOfVenues = venueRepository.count();
         model.addAttribute("venues", venues);
-        long amountVenue = venueRepository.count();
-        model.addAttribute("amount", amountVenue);
+        model.addAttribute("nrOfVenues", nrOfVenues);
         model.addAttribute("showFilters", false);
-        model.addAttribute("capacity", capacityAsking);
         return "venuelist";
     }
 
-    @GetMapping("/venuelist/filter")
-    public String venueListFilter(Model model) {
-        Iterable<Venue> venues = venueRepository.findAll();
-        model.addAttribute("showFilters", true);
-        long amountVenue = venueRepository.count();
-        model.addAttribute("amount", amountVenue);
+    @GetMapping({"/venuelist/filter"})
+    public String venueListWithFilter(Model model,
+                                      @RequestParam(required = false) Integer minCapacity,
+                                      @RequestParam(required = false) Integer maxCapacity,
+                                      @RequestParam(required = false) Integer maxDistance,
+                                      @RequestParam(required = false) String filterFood,
+                                      @RequestParam(required = false) String filterIndoor,
+                                      @RequestParam(required = false) String filterOutdoor) {
+        logger.info(String.format("venueListWithFilter -- min=%d, max=%d, distance=%d, filterFood=%s, filterIndoor=%s, , filterOutdoor=%s",
+                minCapacity, maxCapacity, maxDistance, filterFood, filterIndoor, filterIndoor));
+
+        List<Venue> venues = venueRepository.findByFilter(minCapacity, maxCapacity, maxDistance,
+                filterStringToBoolean(filterFood), filterStringToBoolean(filterIndoor), filterStringToBoolean(filterOutdoor));
+
         model.addAttribute("venues", venues);
+        model.addAttribute("nrOfVenues", venues.size());
+        model.addAttribute("showFilters", true);
+        model.addAttribute("minCapacity", minCapacity);
+        model.addAttribute("maxCapacity", maxCapacity);
+        model.addAttribute("maxDistance", maxDistance);
+        model.addAttribute("filterFood", filterFood);
+        model.addAttribute("filterIndoor", filterIndoor);
+        model.addAttribute("filterOutdoor", filterOutdoor);
+
         return "venuelist";
     }
+    private Boolean filterStringToBoolean(String filterString) {
+        return (filterString == null || filterString.equals("all")) ? null : filterString.equals("yes");
+    }
+
 }
