@@ -18,19 +18,31 @@ public class Venue {
     private int distanceFromPublicTransportInKm;
 
     public Venue() {
-
     }
 
-    public Venue(String venueName, String linkMoreInfo, int capacity, boolean isFoodProvided, boolean indoor, boolean outdoor, boolean freeParkingAvailable, String city, int distanceFromPublicTransportInKm) {
+    public Venue(String venueName, String linkMoreInfo, int capacity, boolean foodProvided, boolean indoor, boolean outdoor, boolean freeParkingAvailable, String city, int distanceFromPublicTransportInKm) {
         this.venueName = venueName;
         this.linkMoreInfo = linkMoreInfo;
         this.capacity = capacity;
-        this.foodProvided = isFoodProvided;
+        this.foodProvided = foodProvided;
         this.indoor = indoor;
         this.outdoor = outdoor;
         this.freeParkingAvailable = freeParkingAvailable;
         this.city = city;
         this.distanceFromPublicTransportInKm = distanceFromPublicTransportInKm;
+    }
+
+    public Venue(String venueName, String linkMoreInfo) {
+        this.venueName = venueName;
+        this.linkMoreInfo = linkMoreInfo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getVenueName() {

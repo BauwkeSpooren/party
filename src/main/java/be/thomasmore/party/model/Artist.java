@@ -1,5 +1,6 @@
 package be.thomasmore.party.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -8,22 +9,13 @@ public class Artist {
     @Id
     private int id;
     private String artistName;
-    private String bio;
-    private String genre;
     private String linkMoreInfo;
+    private String genre;
+    @Column(length=500)
+    private String bio;
     private String portfolio;
 
-    Artist() {
-
-    }
-
-    public Artist(int id, String artistName, String bio, String genre, String linkMoreInfo, String portfolio) {
-        this.id = id;
-        this.artistName = artistName;
-        this.bio = bio;
-        this.genre = genre;
-        this.linkMoreInfo = linkMoreInfo;
-        this.portfolio = portfolio;
+    public Artist() {
     }
 
     public int getId() {
@@ -74,3 +66,4 @@ public class Artist {
         this.portfolio = portfolio;
     }
 }
+
