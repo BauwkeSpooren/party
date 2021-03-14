@@ -1,32 +1,47 @@
 package be.thomasmore.party.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 public class Party {
     @Id
-    int id;
-    String name;
-    Integer pricePreSaleInEur;
-    Integer priceInEur;
-    String extraInfo;
-    Date date;
-    Date doors;
+    private int id;
+    private String name;
+    private Integer pricePresaleInEur;
+    private Integer priceInEur;
+    private String extraInfo;
 
-    private Party() {
+    @Temporal(TemporalType.DATE)
+    private Date date;
 
-    }
+    @Temporal(TemporalType.TIME)
+    private Date doors;
 
-    public Party(int id, String name, Integer pricePreSaleInEur, Integer priceInEur, String extraInfo, Date date, Date doors) {
+    @ManyToOne
+    private Venue venue;
+
+    public Party(int id, String name, Integer pricePresaleInEur, Integer priceInEur, String extraInfo, Date date, Date doors, Venue venue) {
         this.id = id;
         this.name = name;
-        this.pricePreSaleInEur = pricePreSaleInEur;
+        this.pricePresaleInEur = pricePresaleInEur;
         this.priceInEur = priceInEur;
         this.extraInfo = extraInfo;
         this.date = date;
         this.doors = doors;
+        this.venue = venue;
+    }
+
+    public Party() {
+
+    }
+
+    public Venue getVenue() {
+        return venue;
+    }
+
+    public void setVenue(Venue venue) {
+        this.venue = venue;
     }
 
     public int getId() {
@@ -45,12 +60,12 @@ public class Party {
         this.name = name;
     }
 
-    public Integer getPricePreSaleInEur() {
-        return pricePreSaleInEur;
+    public Integer getPricePresaleInEur() {
+        return pricePresaleInEur;
     }
 
-    public void setPricePreSaleInEur(Integer pricePreSaleInEur) {
-        this.pricePreSaleInEur = pricePreSaleInEur;
+    public void setPricePresaleInEur(Integer pricePresaleInEur) {
+        this.pricePresaleInEur = pricePresaleInEur;
     }
 
     public Integer getPriceInEur() {

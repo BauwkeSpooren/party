@@ -1,0 +1,52 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+    <title>Party Details</title>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header">Header</div>
+
+<div class="row1">
+    <div class="row1content" th:if="${party}">
+
+        <div class="prevButtonDiv">
+            <a class="buttonLook smallButton" th:href="@{|/partydetails/${prevId}|}">&lt;</a>
+        </div>
+        <div class="nextButtonDiv">
+            <a class="buttonLook smallButton" th:href="@{|/partydetails/${nextId}|}">&gt;</a>
+        </div>
+
+        <h2 th:text="${party.name}">partyname</h2>
+        <div class="venueinfo">
+            <div class="infoLine">
+                <h3 th:text="${party.getDate()}"></h3>
+            </div>
+            <div th:unless="${priceTest}" class="infoLine">
+                Free Party!
+            </div>
+            <div th:if="${priceTest}" class="infoLine">
+                <div class="infoLineName">price:</div>
+                <div class="InfoLineValue" th:text="${party.getPricePresaleInEur()} + '€ (presale) / ' + ${party.getPriceInEur() + '€'} "></div>
+            </div>
+            <div class="infoLine">
+                <div class="infoLineName">Doors:</div>
+                <div class="InfoLineValue" th:text="${party.getDoors()}"></div>
+            </div>
+            <div th:unless="${party.getExtraInfo().isBlank() || party.getExtraInfo().isEmpty()}" class="infoLine">
+                <div class="infoLineName">extrainfo:</div>
+                <div class="InfoLineValue" th:text="${party.getExtraInfo()}"></div>
+            </div>
+
+    </div>
+    <div class="row1content" th:unless="${party}">
+        <p>no party was chosen</p>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer">Footer</div>
+
+</body>
+</html>
