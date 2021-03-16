@@ -58,6 +58,14 @@
                 <div class="infoLineValue" th:text="${venue.distanceFromPublicTransportInKm} + ' km'">city</div>
             </div>
         </div>
+        <div>
+            <div th:each="party:${parties}">
+                <a class="buttonLook mediumButton"
+                   th:href="@{|/partydetails/${party.id}|}">
+                    <span th:text="${party.getName()}">venue name </span>
+                </a>
+            </div>
+        </div>
 
     </div>
     <div class="row1content" th:unless="${venue}">

@@ -22,3 +22,17 @@ INSERT INTO PARTY(ID, name,price_presale_in_eur, price_in_eur, extra_info, date,
 INSERT INTO PARTY(ID, name, price_presale_in_eur, price_in_eur, extra_info, date, doors, venue_Id)VALUES(3,  'Uppercuts', null, null, ' ','2021-03-14', '21:00', 4);
 INSERT INTO PARTY(ID, name, price_presale_in_eur, price_in_eur, extra_info, date, doors, venue_Id)VALUES(4, 'Zoetzuur', null, null, 'Zoete house / Zure techno','2021-03-21', '21:00', 4);
 INSERT INTO PARTY(ID, name, price_presale_in_eur, price_in_eur, extra_info, date, doors, venue_Id)VALUES(5,  'Oldies but Goldies', null, null, 'afterparty@home van THE BOX!','2020-03-28', '21:00', 4);
+INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID) VALUES(1, 1);
+INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID) VALUES(1, 2);
+INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID) VALUES(2, 2);
+INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID) VALUES(3, 3);
+INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID) VALUES(3, 5);
+INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID) VALUES(4, 5);
+
+INSERT INTO ANIMAL (ID, NAME, CITY, BIO)VALUES (1, 'boop','city here','BIOOOOOOOO');
+INSERT INTO ANIMAL (ID, NAME, CITY, BIO)VALUES (2, 'b222oop','city 2222here','BIOOOO22222OOOO');
+INSERT INTO ANIMAL (ID, NAME, CITY, BIO)VALUES (3, 'bo3333op','city33333 here','BIOOOOOO33333OO');
+
+INSERT INTO PARTY_ANIMALS (PARTIES_ID, ANIMALS_ID) VALUES(1, 1);
+INSERT INTO PARTY_ANIMALS (PARTIES_ID, ANIMALS_ID) VALUES(1, 3);
+INSERT INTO PARTY_ANIMALS (PARTIES_ID, ANIMALS_ID) VALUES(3, 2);

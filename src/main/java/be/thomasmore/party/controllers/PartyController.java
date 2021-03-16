@@ -34,11 +34,14 @@ public class PartyController {
             long nrOfParties = partyRepository.count();
             boolean priceTest;
             priceTest = optionalParty.get().getPriceInEur() != null && optionalParty.get().getPricePresaleInEur() != null;
+            boolean peopleComing;
+            peopleComing = optionalParty.get().getAnimals() != null;
 
             model.addAttribute("party", optionalParty.get());
             model.addAttribute("prevId", id > 1 ? id - 1 : nrOfParties);
             model.addAttribute("nextId", id < nrOfParties ? id + 1 : 1);
             model.addAttribute("priceTest", priceTest);
+            model.addAttribute("peopleComing", peopleComing);
         }
 
         return "partydetails";

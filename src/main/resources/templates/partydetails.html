@@ -23,14 +23,16 @@
         <div class="venueinfo">
             <div class="infoLine">
                 <h3 th:text="${party.getDate()} + ' in '"></h3>
-                <a th:text="${party.getVenue().getVenueName()}" th:href="@{|/venuedetails/${party.getVenue().getId()}|}"></a>
+                <a th:text="${party.getVenue().getVenueName()}"
+                   th:href="@{|/venuedetails/${party.getVenue().getId()}|}"></a>
             </div>
             <div th:unless="${priceTest}" class="infoLine">
                 Free Party!
             </div>
             <div th:if="${priceTest}" class="infoLine">
                 <div class="infoLineName">price:</div>
-                <div class="InfoLineValue" th:text="${party.getPricePresaleInEur()} + '€ (presale) / ' + ${party.getPriceInEur() + '€'} "></div>
+                <div class="InfoLineValue"
+                     th:text="${party.getPricePresaleInEur()} + '€ (presale) / ' + ${party.getPriceInEur() + '€'} "></div>
             </div>
             <div class="infoLine">
                 <div class="infoLineName">Doors:</div>
@@ -41,13 +43,32 @@
                 <div class="InfoLineValue" th:text="${party.getExtraInfo()}"></div>
             </div>
 
-    </div>
-    <div class="row1content" th:unless="${party}">
-        <p>no party was chosen</p>
-    </div>
-</div>
+        </div>
+        <div th:each="artist:${party.getArtists()}">
+            <a class="buttonLook mediumButton"
+               th:href="@{|/artistdetails/${artist.id}|}">
+                <span th:text="${artist.getArtistName()}">venue name </span>
+            </a>
+        </div>
+        <div>
+            <div th:if="${peopleComing}" class="infoLine">
+                <div class="infoLineName">Who goes:</div>
+                <div th:each="animal:${party.getAnimals()}">
+                    <a class="buttonLook mediumButton"
+                       th:href="@{|/animaldetails/${animal.id}|}">
+                        <span th:text="${animal.getName()}">venue name </span>
+                    </a>
+                </div>
+            </div>
+        </div>
 
-<div th:replace="fragments/footer :: footer">Footer</div>
+
+        <div class="row1content" th:unless="${party}">
+            <p>no party was chosen</p>
+        </div>
+    </div>
+
+    <div th:replace="fragments/footer :: footer">Footer</div>
 
 </body>
 </html>
