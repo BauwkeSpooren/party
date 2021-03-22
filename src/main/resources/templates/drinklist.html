@@ -1,0 +1,56 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+    <title>Drinks</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header">Header</div>
+
+<h2>Drinks</h2>
+<div>
+    <form>
+        <div class="onefilter">
+            <input type="submit" value="search" class="buttonLook filterButton">
+        </div>
+        <h3>maxPrijs</h3>
+        <div class="onefilter">
+            <label for="maxPrijs" class="filtername">prijs</label>
+            <input type="number" id="maxPrijs" name="maxPrijs" th:value="${maxPrijs}" min="1" max="20" value="20"> vul hier de maximale prijs is
+        </div>
+        <h3>Alcohol</h3>
+        <div class="onefilter">
+            <label for="alcoholic_yes" class="filtername">yes</label>
+            <input type="radio" id="alcoholic_yes" name="alcoholic" value="yes"
+                   th:checked="${alcoholic=='yes'}">
+        </div>
+        <div class="onefilter">
+            <label for="alcoholic_no" class="filtername">no</label>
+            <input type="radio" id="alcoholic_no" name="alcoholic" value="no" th:checked="${alcoholic=='no'}">
+        </div>
+        <h3>Light</h3>
+        <div class="onefilter">
+            <label for="light_yes" class="filtername">yes</label>
+            <input type="radio" id="light_yes" name="light" value="yes"
+                   th:checked="${light=='yes'}">
+        </div>
+        <div class="onefilter">
+            <label for="light_no" class="filtername">no</label>
+            <input type="radio" id="light_no" name="light" value="no" th:checked="${light=='no'}">
+        </div>
+    </form>
+</div>
+<div class="venuelist">
+    <div th:each="drink:${drinks}">
+        <a class="buttonLook mediumButton"
+           th:href="@{|/drinklist|}">
+            <span th:text="${drink.getName() + ' kost ' + drink.getPrice()}">Drink</span>
+        </a>
+
+    </div>
+</div>
+
+
+</body>
+</html>

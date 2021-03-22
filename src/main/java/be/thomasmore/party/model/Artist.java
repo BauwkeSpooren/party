@@ -13,7 +13,7 @@ public class Artist {
     private String artistName;
     private String linkMoreInfo;
     private String genre;
-    @Column(length=500)
+    @Column(length = 500)
     private String bio;
     private String portfolio;
 
