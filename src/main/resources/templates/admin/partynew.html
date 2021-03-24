@@ -1,0 +1,69 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+    <title>Partynew</title>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header">Header</div>
+
+<div class="row1">
+    <div class="row1content">
+        <h2>new party</h2>
+        <form th:action="@{|/admin/partynew|}" method="post">
+
+            <!--
+            HEY I KNOW HIS DOES NOT WORK BUT I GAVE UP :DD
+            -->
+
+
+            <div class="venueinfo">
+
+                <div class="infoLine">
+                    <a href="/partylist" class="buttonLook editButton">cancel</a>
+                    <input type="submit" value="create" class="buttonLook editButton">
+                </div>
+                <div class="infoLine">
+                    <label for="partyName" class="infoLineName">name: </label>
+                    <input id="partyName" class="infoLineValue" name="name" value="">
+                </div>
+                <div class="infoLine">
+                    <label for="venue" class="infoLineName">venue: </label>
+                    <select id="venue" name="venueId" class="infoLineValue">
+                        <option th:each="venue : ${venues}" th:value="${venue.getId()}"
+                                th:text="${venue.getVenueName()}"
+                        ></option>
+                    </select>
+                </div>
+                <div class="infoLine">
+                    <label for="date" class="infoLineName">date <i>(dd/MM/yyyy)</i>: </label>
+                    <input id="date" class="infoLineValue" name="date" value="">
+                </div>
+                <div class="infoLine">
+                    <label for="pricePresaleInEur" class="infoLineName">price (presale): </label>
+                    <input id="pricePresaleInEur" class="infoLineValue" name="pricePresaleInEur" value="">
+                </div>
+                <div class="infoLine">
+                    <label for="priceInEur" class="infoLineName">price: </label>
+                    <input id="priceInEur" class="infoLineValue" name="priceInEur" value="">
+                </div>
+                <div class="infoLine">
+                    <label for="extraInfo" class="infoLineName">extra info: </label>
+                    <textarea id="extraInfo" cols="25" class="infoLineValue" name="extraInfo"></textarea>
+                </div>
+                <div class="infoLine">
+                    <label for="doors" class="infoLineName">doors <i>(hh:mm)</i>: </label>
+                    <input id="doors" class="infoLineValue" name="doors" value="">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <a class="buttonLook mediumButton" th:href="@{/partylist}">CANCEL</a>
+</div>
+</div>
+
+</body>
+</html>

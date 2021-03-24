@@ -1,21 +1,27 @@
 package be.thomasmore.party.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
 
 @Entity
 public class Party {
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "party_generator")
+    @SequenceGenerator(name = "party_generator", sequenceName = "party_seq", allocationSize = 1)
     @Id
-    private int id;
+    private Integer id;
     private String name;
     private Integer pricePresaleInEur;
     private Integer priceInEur;
     private String extraInfo;
 
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     private Date date;
 
+    @DateTimeFormat(pattern = "HH:mm")
     @Temporal(TemporalType.TIME)
     private Date doors;
 

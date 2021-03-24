@@ -1,0 +1,73 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+    <title>Party edit</title>
+</head>
+<body>
+<div th:object="${party}">
+    <div th:replace="fragments/header :: header">Header</div>
+
+    <h2 th:text="*{name}">partyname</h2>
+    <div class="venueinfo">
+        <div class="infoLine">
+            <h3 th:text="*{#dates.format(date,'dd/MM/yyyy')}"></h3>
+            <a th:text="*{venue.getVenueName()}"
+               th:href="@{|/venuedetails/${party.getVenue().getId()}|}"></a>
+        </div>
+
+        <div>
+            <form th:action="@{|/admin/partyedit/${party.id}|}" method="post">
+                <div class="onefilter">
+                    <input type="submit" value="save" class="buttonLook filterButton">
+                </div>
+                <h3>Name</h3>
+                <div class="onefilter">
+                    <label for="partyName" class="filtername"></label>
+                    <input id="partyName" th:field="*{name}">
+                </div>
+                <div class="infoLine">
+                    <label for="venue" class="infoLineName">venue: </label>
+                    <select id="venue" name="venueId" class="infoLineValue">
+                        <option th:each="venue : ${venues}" th:value="${venue.getId()}"
+                                th:text="${venue.getVenueName()}"
+                                th:selected="${venue.getId() == party.venue.getId()}"></option>
+                    </select>
+                </div>
+                <h3>Price</h3>
+                <div class="onefilter">
+                    <label for="partyPrice" class="filtername"></label>
+                    <input id="partyPrice" th:field="*{priceInEur}">
+                </div>
+                <h3>Presale price</h3>
+                <div class="onefilter">
+                    <label for="partyPricePresale" class="filtername"></label>
+                    <input id="partyPricePresale" th:field="*{pricePresaleInEur}">
+                </div>
+                <h3>Extra Info</h3>
+                <div class="onefilter">
+                    <label for="extraInfo" class="filtername"></label>
+                    <input id="extraInfo" th:field="*{extraInfo}">
+                </div>
+                <h3>Date</h3>
+                <div class="onefilter">
+                    <label for="date" class="filtername">date <i>(yyy-mm-dd)</i>: </label>
+                    <input id="date" th:field="*{date}">
+                    <span th:text="*{#dates.format(date,'dd/MM/yyyy')}">date</span>
+                </div>
+                <h3>Time</h3>
+                <div class="onefilter">
+                    <label for="doors" class="filtername">doors <i>(HH:mm)</i>: </label>
+                    <input id="doors" th:field="*{doors}">
+                    <span th:text="*{#dates.format(doors,'HH:mm')}">date</span>
+                </div>
+            </form>
+        </div>
+
+        <a class="buttonLook mediumButton" th:href="@{|/partydetails/${party.id}|}">CANCEL</a>
+    </div>
+</div>
+</div>
+</body>
+</html>
