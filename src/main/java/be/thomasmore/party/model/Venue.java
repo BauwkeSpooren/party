@@ -2,6 +2,8 @@ package be.thomasmore.party.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.Collection;
 
 @Entity
 public class Venue {
@@ -35,6 +37,10 @@ public class Venue {
     public Venue(String venueName, String linkMoreInfo) {
         this.venueName = venueName;
         this.linkMoreInfo = linkMoreInfo;
+    }
+
+    public Venue(int venueId) {
+        this.id = venueId;
     }
 
     public int getId() {
@@ -115,5 +121,16 @@ public class Venue {
 
     public void setDistanceFromPublicTransportInKm(int distanceFromPublicTransportInKm) {
         this.distanceFromPublicTransportInKm = distanceFromPublicTransportInKm;
+    }
+
+    @OneToMany(mappedBy = "venue")
+    private Collection<Party> party;
+
+    public Collection<Party> getParty() {
+        return party;
+    }
+
+    public void setParty(Collection<Party> party) {
+        this.party = party;
     }
 }

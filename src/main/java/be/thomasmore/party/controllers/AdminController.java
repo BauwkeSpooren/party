@@ -26,11 +26,11 @@ public class AdminController {
     private VenueRepository venueRepository;
 
     @GetMapping("/partyedit/{id}")
-    public String partyedit(Model model, @PathVariable (required = false) Integer id) {
+    public String partyedit(Model model, @PathVariable(required = false) Integer id) {
         logger.info("partyEdit is uitgevoerd?");
 
         Iterable<Venue> venues = venueRepository.findAll();
-        model.addAttribute("venues",venues);
+        model.addAttribute("venues", venues);
 
         Optional<Party> optionalParty = partyRepository.findById(id);
 
@@ -44,8 +44,8 @@ public class AdminController {
     }
 
     @PostMapping("/partyedit/{id}")
-    public String partyeditpost(Model model, @PathVariable (required = false) Integer id,
-                                @ModelAttribute ("party") Party party) {
+    public String partyeditpost(Model model, @PathVariable(required = false) Integer id,
+                                @ModelAttribute("party") Party party) {
         logger.info("partyEdit post " + id);
 
         partyRepository.save(party);
@@ -53,21 +53,16 @@ public class AdminController {
     }
 
     @ModelAttribute("party")
-    public Party findParty(@PathVariable (required = false) Integer id) {
-        logger.info("findparty "+ id);
+    public Party findParty(@PathVariable(required = false) Integer id) {
+        logger.info("findparty " + id);
 
-        if (id != null) {
-            Optional<Party> optionalParty = partyRepository.findById(id);
-            if(optionalParty.isPresent()) {
-                return optionalParty.get();
-            }
-            else {
-                return null;
-            }
+        if (id == null)  return new Party();
+
+        Optional<Party> optionalParty = partyRepository.findById(id);
+        if (optionalParty.isPresent()) {
+            return optionalParty.get();
         }
-        else {
-            return null;
-        }
+        return null;
     }
 
 
@@ -80,17 +75,19 @@ public class AdminController {
         model.addAttribute("party", party);
 
         Iterable<Venue> venues = venueRepository.findAll();
-        model.addAttribute("venues",venues);
+        model.addAttribute("venues", venues);
 
         return "admin/partynew";
     }
 
     @PostMapping("/partynew")
     public String partynewpost(Model model,
-                               @ModelAttribute ("party") Party party) {
+                               @ModelAttribute("party") Party party,
+                               @RequestParam int venueId) {
 
-        partyRepository.save(party);
-        return "redirect:/partynew/";
+        party.setVenue(new Venue(venueId));
+        Party newParty = partyRepository.save(party);
+        return "redirect:/partynew/" + newParty.getId();
     }
 
 }

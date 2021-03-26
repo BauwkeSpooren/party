@@ -9,7 +9,7 @@
 
 <div th:replace="fragments/header :: header">Header</div>
 
-<div class="row1">
+<div class="row1" th:object="${party}">
     <div class="row1content">
         <h2>new party</h2>
         <form th:action="@{|/admin/partynew|}" method="post">
@@ -27,35 +27,35 @@
                 </div>
                 <div class="infoLine">
                     <label for="partyName" class="infoLineName">name: </label>
-                    <input id="partyName" class="infoLineValue" name="name" value="">
+                    <input id="partyName" th:field="*{name}">
                 </div>
                 <div class="infoLine">
                     <label for="venue" class="infoLineName">venue: </label>
                     <select id="venue" name="venueId" class="infoLineValue">
-                        <option th:each="venue : ${venues}" th:value="${venue.getId()}"
+                        <option th:each="venue : ${venues}" th:value="${venue.id}"
                                 th:text="${venue.getVenueName()}"
                         ></option>
                     </select>
                 </div>
                 <div class="infoLine">
                     <label for="date" class="infoLineName">date <i>(dd/MM/yyyy)</i>: </label>
-                    <input id="date" class="infoLineValue" name="date" value="">
+                    <input id="date" th:field="*{date}">
                 </div>
                 <div class="infoLine">
                     <label for="pricePresaleInEur" class="infoLineName">price (presale): </label>
-                    <input id="pricePresaleInEur" class="infoLineValue" name="pricePresaleInEur" value="">
+                    <input id="pricePresaleInEur" th:field="*{pricePresaleInEur}">
                 </div>
                 <div class="infoLine">
                     <label for="priceInEur" class="infoLineName">price: </label>
-                    <input id="priceInEur" class="infoLineValue" name="priceInEur" value="">
+                    <input id="priceInEur" th:field="*{priceInEur}">
                 </div>
                 <div class="infoLine">
                     <label for="extraInfo" class="infoLineName">extra info: </label>
-                    <textarea id="extraInfo" cols="25" class="infoLineValue" name="extraInfo"></textarea>
+                    <textarea id="extraInfo" th:field="*{extraInfo}"></textarea>
                 </div>
                 <div class="infoLine">
                     <label for="doors" class="infoLineName">doors <i>(hh:mm)</i>: </label>
-                    <input id="doors" class="infoLineValue" name="doors" value="">
+                    <input id="doors" th:field="*{doors}">
                 </div>
             </div>
         </form>
